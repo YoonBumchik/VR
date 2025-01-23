@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-Frame Example</title> 
+</head>
+<script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+<script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+<script src="https://aframe.io/releases/1.2.0/aframe-physics-system.min.js"></script>
+<body>
+    <a-scene>
+
+        <a-sound src="sounds/танос.mp3" autoplay="true" position="0 1 1"></a-sound>
+
+        <a-sound src="sounds/бенг.mp3" autoplay="true" position="-6 1 -3"></a-sound>
+
+        <a-sound src="sounds/сати.mp3" autoplay="true" position="5 1 -10"></a-sound>
+
+        
+        <a-text value="mushroom garden" position="0 1.5 -3" color="#00FA9A" align="center"></a-text>
+
+<a-cone id="cone2" position="-5 0 -3" radius-bottom="0.5" height="0.4" color="#cb4154"
+        animation="property: position; to: -5 0.2 -3; dir: alternate; loop: true; dur: 1000"></a-cone>
+<a-cylinder position="-5 -0.5 -3" radius="0.2" height="0.8" color="#817066"></a-cylinder>
+
+<a-cone id="cone3" position="1 0.1 -4" radius-bottom="0.4" height="0.6" color="#fbceb1"
+        animation="property: position; to: 1 0.3 -4; dir: alternate; loop: true; dur: 1200"></a-cone>
+<a-cylinder position="1 -0.5 -4" radius="0.15" height="1.2" color="#817066"></a-cylinder>
+
+<a-cone id="cone4" position="-1 0 1" radius-bottom="0.6" height="0.3" color="#bebd7f"
+        animation="property: position; to: -1 0.2 1; dir: alternate; loop: true; dur: 1500"></a-cone>
+<a-cylinder position="-1 -0.5 1" radius="0.20" height="1.0" color="#817066"></a-cylinder>
+
+
+<a-cone id="cone1" position="3.5 0 0" radius-bottom="0.5" height="1.5" color="#bde0ff"
+             animation="property: scale; to: 1.2 1.2 1.2; dir: alternate; loop: true; dur: 2000"></a-cone>
+
+<a-torus id="torus1" position="-3 0.5 -7" radius="0.3" radius-tubular="0.1" color="#ffa089"
+             animation="property: rotation; to: 0 360 0; loop: true; dur: 4000"></a-torus>
+             
+
+             <a-entity id="button1" geometry="primitive: plane; height: 0.3; width: 0.7" 
+             material="color: #4CAF50" position="3 1 0"></a-entity>
+   <a-text value="Change the color of the cone" align="center" position="3 1 0.01" color="#FFFFFF" width="1.2"></a-text>
+   
+             <a-entity id="button2" geometry="primitive: plane; height: 0.3; width: 0.7" 
+             material="color: #FF5722" position="4 1 0"></a-entity>
+             <a-text value="Increase the height of the cone" align="center" position="4 1 0.01" color="#FFFFFF" width="1.2"></a-text>
+
+
+             <a-entity id="button3" geometry="primitive: plane; height: 0.3; width: 0.7"
+                material="color: #F44336" position="-3 1.5 -7"></a-entity>
+            <a-text value="Delete a torus" align="center" position="-3 1.5 -6.99" color="#FFFFFF" width="1.2"></a-text>
+
+            <a-entity id="button4" geometry="primitive: plane; height: 0.3; width: 0.7"
+                material="color: #3F51B5" position="-2 1.5 0"></a-entity>
+      <a-text value="Change the animation of cones" align="center" position="-2 1.5 0.01" color="#FFFFFF" width="1"></a-text>
+
+
+
+    <a-plane position="0 -1 -5" rotation="-90 0 0" width="20" height="20" color="#7dc798"></a-plane>
+
+ <a-camera>
+     <a-cursor></a-cursor>
+ </a-camera>
+
+    <a-light type="ambient" color="#FFF"></a-light>
+    <a-light type="directional" position="-1 1 1" intensity="0.5"></a-light> 
+    </a-scene> 
+
+    <script>
+        const cone1 = document.querySelector('#cone1');
+        const button1 = document.querySelector('#button1');
+        const button2 = document.querySelector('#button2');
+
+        
+        button1.addEventListener('click', () => {
+          cone1.setAttribute('color', '#' + Math.floor(Math.random()*16777215).toString(16));
+        });
+
+        
+        button2.addEventListener('click', () => {
+          let height = parseFloat(cone1.getAttribute('height'));
+          cone1.setAttribute('height', height + 0.2);
+        });
+
+
+        const torus1 = document.querySelector('#torus1');
+        const button3 = document.querySelector('#button3');
+
+        button3.addEventListener('click', () => {
+            torus1.parentNode.removeChild(torus1);
+        });
+
+
+        const cones = [
+          document.querySelector('#cone2'),
+          document.querySelector('#cone3'),
+          document.querySelector('#cone4')
+        ];
+        const button4 = document.querySelector('#button4');
+
+        button4.addEventListener('click', () => {
+          cones.forEach(cone => {
+            cone.setAttribute('animation', 'property: rotation; to: 0 360 0; loop: true; dur: 2000');
+            cone.removeAttribute('animation'); 
+          });
+        });
+        </script>
+</body>
+</html>
